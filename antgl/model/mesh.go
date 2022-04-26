@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"unsafe"
 
+	"github.com/Chao2020x/funny/antgl/shader"
+	"github.com/Chao2020x/funny/antgl/texture"
 	"github.com/Chao2020x/funny/lib/mgl32"
-	"github.com/Chao2020x/funny/sogl/shader"
-	"github.com/Chao2020x/funny/sogl/texture"
 	"github.com/go-gl/gl/v4.1-core/gl"
 )
 
