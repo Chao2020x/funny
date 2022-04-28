@@ -78,10 +78,10 @@ func (m *Mesh) setupMesh() {
 	gl.BindVertexArray(m.VAO)
 	gl.BindBuffer(gl.ARRAY_BUFFER, m.VBO)
 
-	gl.BufferData(gl.ARRAY_BUFFER, len(m.Vertices)*sizeof(Vertex), gl.Ptr(m.Vertices), gl.STATIC_DRAW)
+	gl.BufferData(gl.ARRAY_BUFFER, len(m.Vertices)*int(unsafe.Sizeof(Vertex{})), gl.Ptr(m.Vertices[0]), gl.STATIC_DRAW)
 
 	gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.EBO)
-	gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, len(m.Indices)*int(unsafe.Sizeof(uint32(0))), &m.Indices[0], gl.STATIC_DRAW)
+	gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, len(m.Indices)*int(unsafe.Sizeof(uint32(0))), gl.Ptr(m.Indices[0]), gl.STATIC_DRAW)
 
 	gl.EnableVertexAttribArray(0)
 	gl.VertexAttribPointer(0, 3, gl.FLOAT, gl.FALSE, gl.Ptr(m.Vertices), gl.Ptr(0))
