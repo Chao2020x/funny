@@ -83,20 +83,27 @@ func (m *Mesh) setupMesh() {
 	gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.EBO)
 	gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, len(m.Indices)*int(unsafe.Sizeof(uint32(0))), gl.Ptr(m.Indices[0]), gl.STATIC_DRAW)
 
+	var stride int32 = 3*4 + 3*4 + 2*4 + 3*4 + 3*4
+
+	var offset int = 0
 	gl.EnableVertexAttribArray(0)
-	gl.VertexAttribPointer(0, 3, gl.FLOAT, gl.FALSE, gl.Ptr(m.Vertices), gl.Ptr(0))
+	gl.VertexAttribPointer(0, 3, gl.FLOAT, false, stride, gl.PtrOffset(offset))
 
+	offset += 3 * 4
 	gl.EnableVertexAttribArray(1)
-	gl.VertexAttribPointer(1, 3, gl.FLOAT, gl.FALSE, sizeof(Vertex), gl.Ptr(12))
+	gl.VertexAttribPointer(1, 3, gl.FLOAT, false, stride, gl.PtrOffset(offset))
 
+	offset += 2 * 4
 	gl.EnableVertexAttribArray(2)
-	gl.VertexAttribPointer(2, 2, gl.FLOAT, gl.FALSE, sizeof(Vertex), gl.Ptr(24))
+	gl.VertexAttribPointer(2, 2, gl.FLOAT, false, stride, gl.PtrOffset(offset))
 
+	offset += 3 * 4
 	gl.EnableVertexAttribArray(3)
-	gl.VertexAttribPointer(3, 3, gl.FLOAT, gl.FALSE, sizeof(Vertex), gl.Ptr(32))
+	gl.VertexAttribPointer(3, 3, gl.FLOAT, false, stride, gl.PtrOffset(offset))
 
+	offset += 3 * 4
 	gl.EnableVertexAttribArray(4)
-	gl.VertexAttribPointer(4, 3, gl.FLOAT, gl.FALSE, sizeof(Vertex), gl.Ptr(44))
+	gl.VertexAttribPointer(4, 3, gl.FLOAT, false, stride, gl.PtrOffset(offset))
 
 	gl.BindVertexArray(0)
 
