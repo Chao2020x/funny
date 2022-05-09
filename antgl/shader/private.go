@@ -84,7 +84,7 @@ func checkCompileErrors(shaderProgram uint32) error {
 }
 
 func (s *ShaderObject) getUniform(name string) int32 {
-	position := gl.GetUniformLocation(s.id, gl.Str(name+"\x00"))
+	position := gl.GetUniformLocation(s.Id, gl.Str(name+"\x00"))
 	if position == -1 {
 		fmt.Println("uniform ", name, " set failed!")
 	}

@@ -17,7 +17,7 @@ import (
 
 // Shader 着色器对象
 type ShaderObject struct {
-	id uint32
+	Id uint32
 }
 
 //NewShader 结构体构造函数
@@ -46,13 +46,13 @@ func NewShader(vertShaderPath, fragShaderPath string) (*ShaderObject, error) {
 	//链接生成着色器程序
 	shaderProgram, err := linkShader(verHandle, fraHandle)
 	return &ShaderObject{
-		id: shaderProgram,
+		Id: shaderProgram,
 	}, err
 }
 
 //Use 激活着色器
 func (s *ShaderObject) Use() {
-	gl.UseProgram(s.id)
+	gl.UseProgram(s.Id)
 }
 
 //SetBool 赋 bool 类型值给着色器程序中的uniform
@@ -121,7 +121,7 @@ func (s *ShaderObject) SetMat4(name string, value mgl32.Mat4) {
 
 //Delete 删除着色器程序
 func (s *ShaderObject) Delete() {
-	gl.DeleteShader(s.id)
+	gl.DeleteShader(s.Id)
 }
 
 //GetUniform 赋值给着色器程序中的uniform
